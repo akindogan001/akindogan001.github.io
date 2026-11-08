@@ -1,11 +1,11 @@
 /* ==========================================================================
    Tema: açık = teknik çizim (blueprint), koyu = kontrol odası (HMI)
    Her token light-dark(açık, koyu) ile tek yerde tanımlanır.
-   Tema seçimi: sistem tercihi; kullanıcı seçerse html[data-theme] onu ezer.
+   Varsayılan tema koyu; kullanıcı açığı seçerse html[data-theme='light'] onu ezer.
    ========================================================================== */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 
   --bg: light-dark(#f6f5f0, #14181d);
   --surface: light-dark(#ffffff, #1d232a);

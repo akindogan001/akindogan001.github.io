@@ -12,10 +12,16 @@ export const t = (lang: Lang): Dict => dicts[lang];
 export const otherLang = (lang: Lang): Lang => (lang === 'tr' ? 'en' : 'tr');
 export const langPaths = () => locales.map((lang) => ({ params: { lang } }));
 
-/** /<lang>/<path>/ biçiminde, sonda eğik çizgili URL üretir. */
+/** Sitenin yayınlandığı alt yol (ör. "/portfolio"); kökte yayınlanıyorsa boş. */
+export const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+/** public/ altındaki bir dosyanın adresi, alt yol önekiyle. */
+export const asset = (path: string): string => `${BASE}/${path.replace(/^\/+/, '')}`;
+
+/** <base>/<lang>/<path>/ biçiminde, sonda eğik çizgili URL üretir. */
 export function url(lang: Lang, path = ''): string {
   const clean = path.replace(/^\/+|\/+$/g, '');
-  return clean ? `/${lang}/${clean}/` : `/${lang}/`;
+  return clean ? `${BASE}/${lang}/${clean}/` : `${BASE}/${lang}/`;
 }
 
 /** İçerik id'si "tr/db-sync" → { lang: 'tr', slug: 'db-sync' } */

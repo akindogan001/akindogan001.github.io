@@ -50,7 +50,7 @@ const section = path.split('/')[0];
 <script>
   const root = document.documentElement;
   document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
-    const current = root.dataset.theme ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const current = root.dataset.theme === 'light' ? 'light' : 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
     try {

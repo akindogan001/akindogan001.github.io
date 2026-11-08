@@ -4,7 +4,8 @@
  * GitHub Pages sunucu tarafı yönlendirme yapamadığı için küçük bir istemci betiği kullanılır.
  */
 import site from '../data/site.json';
-const base = Astro.site!.href.replace(/\/$/, '');
+import { url, asset, BASE } from '../lib/i18n';
+const abs = (lang: 'tr' | 'en') => new URL(url(lang), Astro.site).href;
 ---
 
 <!doctype html>
@@ -14,11 +15,11 @@ const base = Astro.site!.href.replace(/\/$/, '');
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{site.name}</title>
     <meta name="robots" content="noindex" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" hreflang="tr" href={`${base}/tr/`} />
-    <link rel="alternate" hreflang="en" href={`${base}/en/`} />
-    <link rel="alternate" hreflang="x-default" href={`${base}/en/`} />
-    <script is:inline>
+    <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
+    <link rel="alternate" hreflang="tr" href={abs('tr')} />
+    <link rel="alternate" hreflang="en" href={abs('en')} />
+    <link rel="alternate" hreflang="x-default" href={abs('en')} />
+    <script is:inline define:vars={{ base: BASE }}>
       (function () {
         var lang = null;
         try {
@@ -28,16 +29,15 @@ const base = Astro.site!.href.replace(/\/$/, '');
           var langs = navigator.languages || [navigator.language || ''];
           lang = langs.some(function (l) { return /^tr\b/i.test(l); }) ? 'tr' : 'en';
         }
-        location.replace('/' + lang + '/');
+        location.replace(base + '/' + lang + '/');
       })();
     </script>
     <style>
-      body { font: 16px/1.6 system-ui, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; background: #f6f5f0; color: #1b2430; }
-      a { color: #1f4e99; margin: 0 8px; }
-      @media (prefers-color-scheme: dark) { body { background: #14181d; color: #d7dde3; } a { color: #6ea8fe; } }
+      body { font: 16px/1.6 system-ui, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; background: #14181d; color: #d7dde3; }
+      a { color: #6ea8fe; margin: 0 8px; }
     </style>
   </head>
   <body>
-    <p><a href="/tr/">Türkçe</a> · <a href="/en/">English</a></p>
+    <p><a href={url('tr')}>Türkçe</a> · <a href={url('en')}>English</a></p>
   </body>
 </html>
