@@ -1,0 +1,78 @@
+---
+/**
+ * İçerik dosyasındaki `flow` listesinden veri akışı diyagramı üretir.
+ * Gösterim dili tüm sitede aynıdır: ⬡ cihaz · ▭ servis · ◯ veri deposu · ▱ kuyruk · ▣ arayüz
+ */
+import { t, type Lang } from '../lib/i18n';
+
+type NodeType = 'device' | 'service' | 'store' | 'queue' | 'ui';
+interface Props {
+  lang: Lang;
+  nodes: { type: NodeType; label: string; layer: string }[];
+}
+const { lang, nodes } = Astro.props;
+const d = t(lang);
+const glyph: Record<NodeType, string> = { device: '⬡', service: '▭', store: '◯', queue: '▱', ui: '▣' };
+const used = [...new Set(nodes.map((n) => n.type))];
+---
+
+{
+  nodes.length > 0 && (
+    <figure class="flow">
+      <ol class="flow__nodes">
+        {nodes.map((n) => (
+          <li class={`flow__node l-${n.layer}`}>
+            <span class="flow__type">
+              <span aria-hidden="true">{glyph[n.type]}</span> {d.nodeTypes[n.type]}
+            </span>
+            <span class="flow__label">{n.label}</span>
+          </li>
+        ))}
+      </ol>
+      <figcaption class="flow__legend">
+        <span>{d.common.legend}:</span>
+        {used.map((type) => (
+          <span>
+            {glyph[type]} {d.nodeTypes[type]}
+          </span>
+        ))}
+        <span>→ {d.common.flow}</span>
+      </figcaption>
+    </figure>
+  )
+}
+
+<style>
+  .flow { margin: 0; padding: 20px; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: var(--surface-2); }
+  .flow__nodes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px 30px; }
+  .flow__node {
+    position: relative;
+    flex: 1 1 140px;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--layer);
+    border-radius: var(--radius);
+  }
+  .flow__node + .flow__node::before {
+    content: '→';
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    color: var(--muted);
+  }
+  .flow__type { font-family: var(--font-mono); font-size: 0.72rem; color: var(--layer); text-transform: uppercase; letter-spacing: 0.04em; }
+  .flow__label { font-size: 0.92rem; line-height: 1.35; }
+  .flow__legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 14px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+  @media (max-width: 640px) {
+    .flow__nodes { flex-direction: column; gap: 24px; }
+    .flow__node { max-width: none; flex-basis: auto; }
+    .flow__node + .flow__node::before { content: '↓'; left: 18px; top: -21px; transform: none; }
+  }
+</style>

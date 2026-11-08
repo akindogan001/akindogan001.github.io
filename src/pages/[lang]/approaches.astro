@@ -1,0 +1,74 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { t, url, langPaths, type Lang } from '../../lib/i18n';
+import { getApproaches, getSolutions } from '../../lib/content';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const d = t(lang);
+const approaches = await getApproaches(lang);
+const solutions = await getSolutions(lang);
+const titleOf = new Map(solutions.map((s) => [s.slug, s.data.title]));
+const rendered = await Promise.all(approaches.map(async (a) => ({ a, Content: (await render(a)).Content })));
+---
+
+<Base lang={lang} path="approaches" title={d.approaches.title} description={d.approaches.lead}>
+  <section class="container page-head">
+    <h1>{d.approaches.title}</h1>
+    <p class="lead">{d.approaches.lead}</p>
+    <nav class="toc" aria-label={d.approaches.title}>
+      {rendered.map(({ a }) => <a href={`#${a.slug}`}>{a.data.title}</a>)}
+    </nav>
+  </section>
+
+  <div class="container section approaches">
+    {
+      rendered.map(({ a, Content }, i) => (
+        <section id={a.slug} class="approach">
+          <header>
+            <span class="eyebrow">Q{i + 1} · {a.data.title}</span>
+            <h2>{a.data.question}</h2>
+          </header>
+          <div class="prose">
+            <Content />
+          </div>
+          <dl class="patterns">
+            {a.data.patterns.map((p) => (
+              <div>
+                <dt>{p.name}</dt>
+                <dd>{p.desc}</dd>
+              </div>
+            ))}
+          </dl>
+          {a.data.related.filter((s) => titleOf.has(s)).length > 0 && (
+            <p class="related">
+              <span class="mono">{d.common.related}:</span>{' '}
+              {a.data.related
+                .filter((s) => titleOf.has(s))
+                .map((s, j) => (
+                  <>
+                    {j > 0 && ' · '}
+                    <a href={url(lang, `solutions/${s}`)}>{titleOf.get(s)}</a>
+                  </>
+                ))}
+            </p>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .toc { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; font: 0.85rem var(--font-mono); }
+  .approaches { display: flex; flex-direction: column; gap: 56px; padding-top: 32px; }
+  .approach { scroll-margin-top: 90px; border-top: 1px solid var(--line-strong); padding-top: 24px; }
+  .approach h2 { max-width: 30ch; }
+  .patterns { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); margin: 20px 0 0; }
+  .patterns > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .patterns dt { font-weight: 600; margin-bottom: 4px; }
+  .patterns dd { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .related { margin-top: 16px; font-size: 0.92rem; }
+  .related .mono { color: var(--muted); font-size: 0.8rem; }
+</style>

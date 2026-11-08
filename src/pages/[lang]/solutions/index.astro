@@ -1,0 +1,85 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SolutionCard from '../../../components/SolutionCard.astro';
+import { t, langPaths, type Lang } from '../../../lib/i18n';
+import { LAYERS } from '../../../lib/layers';
+import { getSolutions } from '../../../lib/content';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const d = t(lang);
+const solutions = await getSolutions(lang);
+---
+
+<Base lang={lang} path="solutions" title={d.solutions.title} description={d.solutions.lead}>
+  <section class="container page-head">
+    <span class="eyebrow">{solutions.length} · {d.nav.solutions}</span>
+    <h1>{d.solutions.title}</h1>
+    <p class="lead">{d.solutions.lead}</p>
+  </section>
+
+  <section class="container section" style="padding-top:24px">
+    <nav class="filters" aria-label={d.solutions.filterLabel}>
+      <a href="?" data-filter="" aria-pressed="true">{d.solutions.filterAll}</a>
+      {
+        LAYERS.map((id) => (
+          <a href={`?layer=${id}`} data-filter={id} class={`l-${id}`} aria-pressed="false">
+            <i aria-hidden="true" />
+            {d.layers[id].code} {d.layers[id].name}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="grid-3" data-solutions>
+      {solutions.map((s) => <SolutionCard lang={lang} solution={s} />)}
+    </div>
+    <p class="empty" data-empty hidden>{d.solutions.empty}</p>
+  </section>
+</Base>
+
+<script>
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-solutions] > [data-layers]')];
+  const chips = [...document.querySelectorAll<HTMLAnchorElement>('[data-filter]')];
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  function apply(layer: string) {
+    let visible = 0;
+    for (const card of cards) {
+      const show = !layer || (card.dataset.layers ?? '').split(' ').includes(layer);
+      card.hidden = !show;
+      if (show) visible++;
+    }
+    for (const chip of chips) chip.setAttribute('aria-pressed', String(chip.dataset.filter === layer));
+    if (empty) empty.hidden = visible > 0;
+  }
+
+  for (const chip of chips) {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      const layer = chip.dataset.filter ?? '';
+      history.replaceState(null, '', layer ? `?layer=${layer}` : location.pathname);
+      apply(layer);
+    });
+  }
+  apply(new URLSearchParams(location.search).get('layer') ?? '');
+</script>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .filters a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    font: 0.85rem var(--font-mono);
+  }
+  .filters a i { width: 8px; height: 8px; border-radius: 2px; background: var(--layer); }
+  .filters a[aria-pressed='true'] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .empty { color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>

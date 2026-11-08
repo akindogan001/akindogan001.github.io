@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t, url, langPaths, type Lang } from '../../lib/i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const d = t(lang);
+---
+
+<Base lang={lang} path="about" title={d.about.title} description={d.about.lead}>
+  <section class="container page-head">
+    <h1>{d.about.title}</h1>
+    <p class="lead">{d.about.lead}</p>
+  </section>
+
+  <div class="container section about">
+    <div class="prose">
+      {d.about.story.map((p) => <p>{p}</p>)}
+    </div>
+
+    <div class="grid-2">
+      <div class="statement">
+        <span class="eyebrow">{d.about.missionLabel}</span>
+        <p>{d.about.mission}</p>
+      </div>
+      <div class="statement">
+        <span class="eyebrow">{d.about.visionLabel}</span>
+        <p>{d.about.vision}</p>
+      </div>
+    </div>
+
+    <section>
+      <h2 class="dim-title">{d.about.principlesTitle}</h2>
+      <ol class="principles">
+        {d.about.principles.map((p) => <li>{p}</li>)}
+      </ol>
+    </section>
+
+    <p>
+      <a class="btn" href={url(lang, 'contact')}>{d.home.ctaButton}</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .about { display: flex; flex-direction: column; gap: 44px; padding-top: 24px; }
+  .statement { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 20px; }
+  .statement p { margin: 0; font-size: 1.15rem; font-weight: 500; }
+  .principles { margin: 0; padding: 0; list-style: none; counter-reset: p; display: grid; gap: 10px; }
+  .principles li { counter-increment: p; display: grid; grid-template-columns: 44px 1fr; align-items: baseline; }
+  .principles li::before { content: 'P' counter(p, decimal-leading-zero); font: 0.8rem var(--font-mono); color: var(--accent); }
+</style>

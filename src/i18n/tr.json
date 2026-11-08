@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "siteTitle": "Akın Doğan — Endüstriyel Yazılım Mühendisi",
+    "description": "Sahadan karara endüstriyel yazılım: PLC/SCADA entegrasyonu, MES modülleri, gerçek zamanlı telemetri ve sistemler arası veri senkronizasyonu."
+  },
+  "nav": {
+    "home": "Ana sayfa",
+    "solutions": "Çözümler",
+    "approaches": "Yaklaşımlar",
+    "about": "Hakkımda",
+    "contact": "İletişim",
+    "skip": "İçeriğe geç",
+    "menu": "Ana menü"
+  },
+  "common": {
+    "switchLang": "English",
+    "switchLangShort": "EN",
+    "themeToggle": "Açık / koyu tema",
+    "readMore": "Detaylar",
+    "allSolutions": "Tüm çözümler",
+    "backToSolutions": "Çözümlere dön",
+    "inProgress": "Geliştirme aşamasında",
+    "production": "Üretimde",
+    "layers": "Kapsadığı katmanlar",
+    "stack": "Teknolojiler",
+    "role": "Rol",
+    "flow": "Veri akışı",
+    "legend": "Gösterim",
+    "decisions": "Mühendislik kararları",
+    "decision": "Karar",
+    "why": "Neden",
+    "alternative": "Değerlendirilen alternatif",
+    "cost": "Bedeli",
+    "related": "Uygulandığı yerler",
+    "onlyOtherLang": "Bu sayfanın Türkçe sürümü henüz yok."
+  },
+  "layers": {
+    "field": {
+      "code": "L1",
+      "name": "Saha",
+      "desc": "Verinin doğduğu yer",
+      "items": ["PLC", "Sensörler", "Robotlar", "Teraziler", "Bataryalar"]
+    },
+    "acquisition": {
+      "code": "L2",
+      "name": "Toplama",
+      "desc": "Cihazlarla güvenilir konuşmak",
+      "items": ["Modbus", "OPC UA", "CANbus", "Seri haberleşme", "Cihaz servisleri"]
+    },
+    "integration": {
+      "code": "L3",
+      "name": "Entegrasyon",
+      "desc": "Veriyi kaybetmeden taşımak",
+      "items": ["Senkronizasyon", "Hata toleransı", "ERP / B2B", "Alarmlar"]
+    },
+    "decision": {
+      "code": "L4",
+      "name": "Karar",
+      "desc": "Veriyi aksiyona çevirmek",
+      "items": ["MES", "Dashboard'lar", "Trafik yönetimi", "Simülasyon"]
+    }
+  },
+  "nodeTypes": {
+    "device": "Cihaz",
+    "service": "Servis",
+    "store": "Veri deposu",
+    "queue": "Kuyruk",
+    "ui": "Arayüz"
+  },
+  "categories": {
+    "monitoring": "Veri ve izleme",
+    "automation": "Otomasyon ve kontrol",
+    "mes": "Üretim yönetimi (MES)",
+    "integration": "Entegrasyon ve senkronizasyon",
+    "robotics": "Robotik ve simülasyon",
+    "personal": "Kişisel ürünler"
+  },
+  "stackGroups": {
+    "ot": "OT / Otomasyon",
+    "protocols": "Protokoller",
+    "languages": "Diller",
+    "backend": "Backend",
+    "data": "Veri",
+    "frontend": "Frontend",
+    "devops": "DevOps"
+  },
+  "home": {
+    "eyebrow": "Endüstriyel yazılım mühendisi",
+    "title": "Sahadan karara: üretim verinizin yolculuğunu uçtan uca tasarlıyorum.",
+    "lead": "Makinelerden veriyi toplayan, sistemler arasında kayıpsız taşıyan ve karara dönüştüren yazılımlar geliştiriyorum. PLC/SCADA entegrasyonu, MES modülleri, gerçek zamanlı telemetri ve veri senkronizasyonu üzerine 8 yıllık deneyim.",
+    "ctaPrimary": "Çözümleri incele",
+    "ctaSecondary": "Projenizi konuşalım",
+    "status": "Yeni projelere açığım",
+    "location": "İstanbul · Uzaktan / sahada",
+    "diagramTitle": "Veri yolculuğu",
+    "diagramHint": "Her katman, üzerine kurulan çözümlere bağlanır.",
+    "problemsTitle": "Hangi sorunları çözüyorum",
+    "problems": [
+      "Makinelerden veri alamıyoruz ya da veriyi elle topluyoruz.",
+      "OEE ve duruşları Excel'de hesaplıyoruz.",
+      "ERP'deki üretim emirleri sahada olanla uyuşmuyor.",
+      "İki veritabanı birbirini tutmuyor, gece job'ları sürekli patlıyor.",
+      "Kimsenin dokunmaya cesaret edemediği eski bir masaüstü uygulaması ya da Windows servisi."
+    ],
+    "featuredTitle": "Öne çıkan sistemler",
+    "approachTitle": "Nasıl düşünüyorum",
+    "approachLead": "Teknoloji seçimleri aşağıdaki soruları takip eder, tersi değil.",
+    "stackTitle": "Teknolojiler",
+    "ctaTitle": "Bir üretim hattı, bir entegrasyon ya da yarım kalmış bir sistem mi var?",
+    "ctaText": "Birkaç cümleyle anlatın. Yardımcı olup olamayacağımı görmek için genelde kısa bir görüşme yeterli.",
+    "ctaButton": "İletişime geç"
+  },
+  "solutions": {
+    "title": "Çözümler",
+    "lead": "Tasarlayıp geliştirdiğim sistemler; problem, mimari ve mühendislik kararlarıyla. Müşteri adları ve gizli detaylar bilinçli olarak yer almıyor.",
+    "filterLabel": "Katmana göre filtrele",
+    "filterAll": "Tümü",
+    "empty": "Bu katmanda henüz çözüm yok."
+  },
+  "approaches": {
+    "title": "Mühendislik yaklaşımları",
+    "lead": "Bir mimarı bildiği teknolojilerden çok sorduğu sorular tanımlar. Tasarımı etrafında kurduğum kalite nitelikleri ve başvurduğum desenler bunlar."
+  },
+  "about": {
+    "title": "Hakkımda",
+    "lead": "Yazılım geliştiren bir elektrik-elektronik mühendisiyim. Kablonun iki ucunu da bilen biri.",
+    "story": [
+      "Saha tarafından başladım: PLC kontrollü makineleri devreye aldım, Structured Text ve Ladder ile kontrol mantığı yazdım, sahada hata ayıkladım.",
+      "Zamanla katmanlarda yukarı çıktım: cihaz haberleşme servisleri, MES modülleri, veri senkronizasyon platformları ve dashboard'lar. Bunu yaparken sahada olanı gözden kaçırmadım.",
+      "Bugün veriyi makineden karara taşıyan sistemler tasarlıyorum. Önceliğim güvenilirlik, sadelik ve test edilebilirlik."
+    ],
+    "missionLabel": "Misyon",
+    "mission": "Makine verisini güvenilir, izlenebilir ve karar verdiren bir bilgiye dönüştürmek.",
+    "visionLabel": "Vizyon",
+    "vision": "OT ile IT arasındaki duvarın olmadığı, her makinenin konuşabildiği üretim tesisleri.",
+    "principlesTitle": "İlkeler",
+    "principles": [
+      "Önce sahayı ve veriyi anla, sonra kod yaz.",
+      "7/24 çalışan sistemlerde hata toleransı bir özellik değil, zorunluluktur.",
+      "Modüler, test edilebilir ve dokümante teslim.",
+      "Önce simülasyon, sonra saha.",
+      "Üç yıl sonra da anlaşılabilecek en sade tasarımı seç."
+    ]
+  },
+  "contact": {
+    "title": "İletişim",
+    "lead": "Proje, outsource, ekip desteği ya da iş fırsatı. Birkaç cümle yazın, 24 saat içinde dönüş yapayım.",
+    "cvNote": "Detaylı CV'mi talep üzerine paylaşıyorum. Aşağıdan “CV talebi” konusunu seçebilirsiniz.",
+    "channels": "Diğer kanallar",
+    "noForm": "İletişim formu henüz aktif değil. Aşağıdaki kanallardan ulaşabilirsiniz.",
+    "form": {
+      "name": "Ad soyad",
+      "email": "E-posta",
+      "company": "Firma",
+      "subject": "Konu",
+      "purpose": "Pozisyon / amaç",
+      "message": "Mesaj",
+      "send": "Gönder",
+      "sending": "Gönderiliyor…",
+      "success": "Teşekkürler, mesajınız ulaştı. En kısa sürede dönüş yapacağım.",
+      "error": "Bir sorun oluştu. Lütfen tekrar deneyin ya da aşağıdaki kanalları kullanın.",
+      "required": "zorunlu"
+    },
+    "subjects": {
+      "project": "Proje",
+      "outsource": "Outsource / ekip desteği",
+      "job": "İş fırsatı",
+      "cv": "CV talebi"
+    }
+  },
+  "footer": {
+    "drawnBy": "Çizen",
+    "revision": "Rev.",
+    "scale": "Ölçek",
+    "sheet": "Pafta"
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "text": "Aradığınız sayfa yok ya da taşınmış.",
+    "back": "Ana sayfaya dön"
+  }
+}

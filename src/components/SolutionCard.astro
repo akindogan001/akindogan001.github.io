@@ -1,0 +1,31 @@
+---
+import LayerStrip from './LayerStrip.astro';
+import { t, url, type Lang } from '../lib/i18n';
+import type { Solution } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  solution: Solution;
+}
+const { lang, solution } = Astro.props;
+const d = t(lang);
+const { title, summary, category, layers, metrics, status } = solution.data;
+const metric = metrics[0];
+---
+
+<article class="card" data-layers={layers.join(' ')}>
+  <div class="card__meta">
+    <span class="eyebrow" style="margin:0">{d.categories[category]}</span>
+    {status === 'in-progress' && <span class="status status--progress">{d.common.inProgress}</span>}
+  </div>
+  <h3><a href={url(lang, `solutions/${solution.slug}`)}>{title}</a></h3>
+  <p>{summary}</p>
+  {
+    metric && (
+      <p class="card__metric">
+        <strong>{metric.value}</strong> {metric.label}
+      </p>
+    )
+  }
+  <LayerStrip lang={lang} layers={layers} />
+</article>

@@ -1,0 +1,178 @@
+---
+import Base from '../../layouts/Base.astro';
+import LayerDiagram from '../../components/LayerDiagram.astro';
+import SolutionCard from '../../components/SolutionCard.astro';
+import site from '../../data/site.json';
+import { t, url, langPaths, type Lang } from '../../lib/i18n';
+import { getSolutions, getApproaches, groupStack, allStackIds } from '../../lib/content';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const d = t(lang);
+
+const solutions = await getSolutions(lang);
+const featured = solutions.filter((s) => s.data.featured).slice(0, 3);
+const approaches = await getApproaches(lang);
+const stackGroups = groupStack(allStackIds());
+const groupOrder = ['ot', 'protocols', 'languages', 'backend', 'data', 'frontend', 'devops'] as const;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  jobTitle: d.home.eyebrow,
+  sameAs: [site.github, site.linkedin].filter(Boolean),
+  knowsAbout: ['Industrial automation', 'PLC', 'SCADA', 'MES', 'OPC UA', 'Modbus', '.NET', 'Data synchronization'],
+};
+---
+
+<Base lang={lang} jsonLd={jsonLd}>
+  <section class="section hero">
+    <div class="container">
+      <span class="eyebrow">{d.home.eyebrow}</span>
+      <h1>{d.home.title}</h1>
+      <p class="lead">{d.home.lead}</p>
+      <div class="hero__status">
+        <span class="status">{d.home.status}</span>
+        <span class="mono hero__loc">{d.home.location}</span>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href={url(lang, 'solutions')}>{d.home.ctaPrimary}</a>
+        <a class="btn btn--ghost" href={url(lang, 'contact')}>{d.home.ctaSecondary}</a>
+      </div>
+      <div class="hero__diagram">
+        <LayerDiagram lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="dim-title">{d.home.problemsTitle}</h2>
+      <ul class="problems">
+        {d.home.problems.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  {
+    featured.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <h2 class="dim-title">{d.home.featuredTitle}</h2>
+          <div class="grid-3">
+            {featured.map((s) => (
+              <SolutionCard lang={lang} solution={s} />
+            ))}
+          </div>
+          <p style="margin-top:20px">
+            <a href={url(lang, 'solutions')}>{d.common.allSolutions} →</a>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    approaches.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <h2 class="dim-title">{d.home.approachTitle}</h2>
+          <p class="lead">{d.home.approachLead}</p>
+          <ol class="questions">
+            {approaches.map((a) => (
+              <li>
+                <a href={`${url(lang, 'approaches')}#${a.slug}`}>
+                  <span class="questions__attr">{a.data.title}</span>
+                  <span class="questions__q">{a.data.question}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section">
+    <div class="container">
+      <h2 class="dim-title">{d.home.stackTitle}</h2>
+      <dl class="stack">
+        {
+          groupOrder
+            .filter((g) => stackGroups.has(g))
+            .map((g) => (
+              <div class="stack__group">
+                <dt>{d.stackGroups[g]}</dt>
+                <dd>
+                  <ul class="tag-list">
+                    {stackGroups.get(g)!.map((s) => (
+                      <li class="tag">{s.name}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta">
+      <h2>{d.home.ctaTitle}</h2>
+      <p class="lead">{d.home.ctaText}</p>
+      <a class="btn" href={url(lang, 'contact')}>{d.home.ctaButton}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero h1 { max-width: 22ch; }
+  .hero__status { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .hero__loc { font-size: 0.85rem; color: var(--muted); }
+  .hero__diagram { margin-top: clamp(40px, 6vw, 64px); }
+
+  .problems { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+  .problems li {
+    padding: 14px 16px 14px 40px;
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .problems li::before {
+    content: '!';
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 16px;
+    height: 16px;
+    display: grid;
+    place-items: center;
+    font: 600 0.7rem var(--font-mono);
+    color: var(--accent-contrast);
+    background: var(--signal);
+    border-radius: 2px;
+  }
+
+  .questions { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .questions a { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 4px 24px; padding: 14px 18px; background: var(--surface); color: var(--text); text-decoration: none; }
+  .questions a:hover { background: var(--surface-2); }
+  .questions__attr { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); }
+  @media (max-width: 560px) {
+    .questions a { grid-template-columns: 1fr; }
+  }
+
+  .stack { margin: 0; display: grid; gap: 14px; }
+  .stack__group { display: grid; grid-template-columns: 160px 1fr; gap: 6px 20px; align-items: baseline; }
+  .stack dt { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .stack dd { margin: 0; }
+  @media (max-width: 560px) {
+    .stack__group { grid-template-columns: 1fr; }
+  }
+
+  .cta { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .cta h2 { max-width: 28ch; }
+</style>

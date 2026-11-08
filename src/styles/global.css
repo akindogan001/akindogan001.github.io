@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Tema: açık = teknik çizim (blueprint), koyu = kontrol odası (HMI)
+   Her token light-dark(açık, koyu) ile tek yerde tanımlanır.
+   Tema seçimi: sistem tercihi; kullanıcı seçerse html[data-theme] onu ezer.
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  --bg: light-dark(#f6f5f0, #14181d);
+  --surface: light-dark(#ffffff, #1d232a);
+  --surface-2: light-dark(#eeece4, #252c34);
+  --text: light-dark(#1b2430, #d7dde3);
+  --muted: light-dark(#556070, #8b96a3);
+  --line: light-dark(#d5d2c6, #2f3843);
+  --line-strong: light-dark(#a9a596, #46515e);
+  --grid: light-dark(rgb(31 78 153 / 0.06), rgb(215 221 227 / 0.035));
+  --accent: light-dark(#1f4e99, #6ea8fe);
+  --accent-contrast: light-dark(#ffffff, #0f141a);
+  --signal: light-dark(#c2410c, #e0a526);
+  --ok: light-dark(#2f855a, #3fb68b);
+
+  /* Katman renkleri: anlamı her iki temada da aynı kalır */
+  --layer-field: light-dark(#c2410c, #fb923c);
+  --layer-acquisition: light-dark(#1d4ed8, #60a5fa);
+  --layer-integration: light-dark(#0f766e, #2dd4bf);
+  --layer-decision: light-dark(#6d28d9, #a78bfa);
+
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --radius: 6px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --maxw: 1120px;
+}
+
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] { color-scheme: dark; }
+
+/* ---------- Temel ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+main { flex: 1; }
+img, svg { max-width: 100%; display: block; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+h1, h2, h3 { line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.6em; }
+h1 { font-size: clamp(1.9rem, 4.2vw, 2.9rem); }
+h2 { font-size: clamp(1.4rem, 2.6vw, 1.8rem); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 1em; }
+ul { padding-left: 1.2em; }
+code, .mono { font-family: var(--font-mono); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 8px;
+  background: var(--accent); color: var(--accent-contrast); padding: 8px 12px; z-index: 10;
+}
+.skip-link:focus { left: 8px; }
+
+/* ---------- Yerleşim ---------- */
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(40px, 7vw, 80px) 0; }
+.section + .section { border-top: 1px dashed var(--line); }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 68ch; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.8em; display: block;
+}
+.page-head { padding-top: clamp(40px, 7vw, 72px); padding-bottom: 8px; }
+.grid-2 { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.grid-3 { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+
+/* ---------- Butonlar, etiketler ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--radius);
+  font-weight: 500; text-decoration: none; border: 1px solid var(--accent);
+  background: var(--accent); color: var(--accent-contrast); cursor: pointer; font: inherit;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn--ghost { background: transparent; color: var(--accent); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+.tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.78rem;
+  padding: 2px 8px; border: 1px solid var(--line-strong); border-radius: 3px;
+  color: var(--muted); background: var(--surface); white-space: nowrap;
+}
+.tag-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+
+.status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+.status::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent);
+}
+.status--progress::before { background: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 25%, transparent); }
+
+/* ---------- Kart ---------- */
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 20px; display: flex; flex-direction: column; gap: 10px; position: relative;
+}
+.card h3 { margin: 0; }
+.card h3 a { color: var(--text); text-decoration: none; }
+.card h3 a::after { content: ''; position: absolute; inset: 0; }
+.card:hover { border-color: var(--line-strong); }
+.card p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.card__meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.card__metric { font-family: var(--font-mono); font-size: 0.85rem; margin-top: auto; }
+.card__metric strong { color: var(--text); font-weight: 600; }
+
+/* ---------- Katman renk yardımcıları ---------- */
+.l-field { --layer: var(--layer-field); }
+.l-acquisition { --layer: var(--layer-acquisition); }
+.l-integration { --layer: var(--layer-integration); }
+.l-decision { --layer: var(--layer-decision); }
+
+/* ---------- Metin içeriği (markdown) ---------- */
+.prose { max-width: 72ch; }
+.prose h2 { font-size: 1.3rem; margin-top: 1.8em; }
+.prose h2::before { content: '§ '; color: var(--muted); font-family: var(--font-mono); font-weight: 400; }
+.prose li { margin-bottom: 0.3em; }
+
+/* ---------- Ölçü çizgisi tarzı bölüm başlığı ---------- */
+.dim-title {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin: 0 0 20px;
+}
+.dim-title::before, .dim-title::after { content: ''; height: 1px; background: var(--line-strong); flex: 1; }
+.dim-title::before { flex: 0 0 16px; }

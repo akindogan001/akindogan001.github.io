@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "siteTitle": "Akın Doğan — Industrial Software Engineer",
+    "description": "Industrial software from the field to the decision: PLC/SCADA integration, MES modules, real-time telemetry and cross-system data synchronization."
+  },
+  "nav": {
+    "home": "Home",
+    "solutions": "Solutions",
+    "approaches": "Approaches",
+    "about": "About",
+    "contact": "Contact",
+    "skip": "Skip to content",
+    "menu": "Main navigation"
+  },
+  "common": {
+    "switchLang": "Türkçe",
+    "switchLangShort": "TR",
+    "themeToggle": "Toggle light / dark theme",
+    "readMore": "Details",
+    "allSolutions": "All solutions",
+    "backToSolutions": "Back to solutions",
+    "inProgress": "In development",
+    "production": "In production",
+    "layers": "Layers covered",
+    "stack": "Technologies",
+    "role": "Role",
+    "flow": "Data flow",
+    "legend": "Notation",
+    "decisions": "Engineering decisions",
+    "decision": "Decision",
+    "why": "Why",
+    "alternative": "Alternative considered",
+    "cost": "Trade-off",
+    "related": "Where it is applied",
+    "onlyOtherLang": "This page is not available in English yet."
+  },
+  "layers": {
+    "field": {
+      "code": "L1",
+      "name": "Field",
+      "desc": "Where the data is born",
+      "items": ["PLC", "Sensors", "Robots", "Scales", "Batteries"]
+    },
+    "acquisition": {
+      "code": "L2",
+      "name": "Acquisition",
+      "desc": "Talking to devices reliably",
+      "items": ["Modbus", "OPC UA", "CANbus", "Serial", "Device services"]
+    },
+    "integration": {
+      "code": "L3",
+      "name": "Integration",
+      "desc": "Moving data without losing it",
+      "items": ["Synchronization", "Fault tolerance", "ERP / B2B", "Alarms"]
+    },
+    "decision": {
+      "code": "L4",
+      "name": "Decision",
+      "desc": "Turning data into action",
+      "items": ["MES", "Dashboards", "Traffic management", "Simulation"]
+    }
+  },
+  "nodeTypes": {
+    "device": "Device",
+    "service": "Service",
+    "store": "Data store",
+    "queue": "Queue",
+    "ui": "Interface"
+  },
+  "categories": {
+    "monitoring": "Data & monitoring",
+    "automation": "Automation & control",
+    "mes": "Manufacturing (MES)",
+    "integration": "Integration & sync",
+    "robotics": "Robotics & simulation",
+    "personal": "Personal products"
+  },
+  "stackGroups": {
+    "ot": "OT / Automation",
+    "protocols": "Protocols",
+    "languages": "Languages",
+    "backend": "Backend",
+    "data": "Data",
+    "frontend": "Frontend",
+    "devops": "DevOps"
+  },
+  "home": {
+    "eyebrow": "Industrial software engineer",
+    "title": "From the field to the decision: I design the whole journey of your production data.",
+    "lead": "I build software that collects data from machines, moves it between systems without loss and turns it into decisions — PLC/SCADA integration, MES modules, real-time telemetry and data synchronization, backed by 8 years of experience.",
+    "ctaPrimary": "Explore solutions",
+    "ctaSecondary": "Let's talk about your project",
+    "status": "Open to new projects",
+    "location": "Istanbul · Remote / on-site",
+    "diagramTitle": "Data journey",
+    "diagramHint": "Each layer links to the solutions built on it.",
+    "problemsTitle": "Problems I solve",
+    "problems": [
+      "We can't get data out of our machines — or we collect it by hand.",
+      "OEE and downtime are calculated in spreadsheets.",
+      "Production orders in the ERP don't match what happens on the floor.",
+      "Two databases drift apart and nightly jobs keep failing.",
+      "A legacy desktop app or Windows service that nobody dares to touch."
+    ],
+    "featuredTitle": "Selected systems",
+    "approachTitle": "How I think",
+    "approachLead": "Technology choices follow the questions below — not the other way around.",
+    "stackTitle": "Technologies",
+    "ctaTitle": "Have a production line, an integration or a half-finished system?",
+    "ctaText": "Tell me about it in a few sentences. A short call is usually enough to see whether I can help.",
+    "ctaButton": "Get in touch"
+  },
+  "solutions": {
+    "title": "Solutions",
+    "lead": "Systems I have designed and built, described by problem, architecture and engineering decisions. Customer names and confidential details are intentionally left out.",
+    "filterLabel": "Filter by layer",
+    "filterAll": "All",
+    "empty": "No solutions on this layer yet."
+  },
+  "approaches": {
+    "title": "Engineering approaches",
+    "lead": "An architect is defined less by the technologies they know than by the questions they ask. These are the quality attributes I design around, and the patterns I reach for."
+  },
+  "about": {
+    "title": "About",
+    "lead": "An electrical & electronics engineer who writes software — someone who knows both ends of the cable.",
+    "story": [
+      "I started on the field side: commissioning PLC-controlled machines, writing control logic in Structured Text and Ladder, and debugging on site.",
+      "Over time I moved up the stack — device communication services, MES modules, data synchronization platforms and dashboards — without losing sight of what happens on the shop floor.",
+      "Today I design systems that carry data from machines to decisions, with an emphasis on reliability, simplicity and testability."
+    ],
+    "missionLabel": "Mission",
+    "mission": "To turn machine data into reliable, traceable information that drives decisions.",
+    "visionLabel": "Vision",
+    "vision": "Production sites with no wall between OT and IT — where every machine can speak.",
+    "principlesTitle": "Principles",
+    "principles": [
+      "Understand the field and the data first, then write code.",
+      "In 24/7 systems, fault tolerance is a requirement, not a feature.",
+      "Modular, testable and documented delivery.",
+      "Simulate first, then go to the field.",
+      "Prefer the simplest design that will still be understandable in three years."
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Projects, outsourcing, team support or a job opportunity — write a few sentences and I will get back to you within 24 hours.",
+    "cvNote": "My detailed CV is shared on request. Choose “CV request” below.",
+    "channels": "Other channels",
+    "noForm": "The contact form is not active yet. You can reach me through the channels below.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company",
+      "subject": "Subject",
+      "purpose": "Position / purpose",
+      "message": "Message",
+      "send": "Send",
+      "sending": "Sending…",
+      "success": "Thank you — your message has arrived. I will get back to you soon.",
+      "error": "Something went wrong. Please try again or use one of the channels below.",
+      "required": "required"
+    },
+    "subjects": {
+      "project": "Project",
+      "outsource": "Outsourcing / team support",
+      "job": "Job opportunity",
+      "cv": "CV request"
+    }
+  },
+  "footer": {
+    "drawnBy": "Drawn by",
+    "revision": "Rev.",
+    "scale": "Scale",
+    "sheet": "Sheet"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has moved.",
+    "back": "Go to home page"
+  }
+}

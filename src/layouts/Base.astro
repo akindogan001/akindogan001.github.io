@@ -1,0 +1,74 @@
+---
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+import { t, otherLang, url, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  /** Dil önekisiz yol, ör. "solutions/db-sync". Ana sayfa için boş. */
+  path?: string;
+  title?: string;
+  description?: string;
+  /** Diğer dilde karşılığı yoksa false: hreflang ve dil düğmesi ana sayfaya gider. */
+  hasAlternate?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { lang, path = '', title, description, hasAlternate = true, jsonLd } = Astro.props;
+const d = t(lang);
+const fullTitle = title ? `${title} · ${site.name}` : d.meta.siteTitle;
+const desc = description ?? d.meta.description;
+const canonical = new URL(url(lang, path), Astro.site).href;
+const alt = otherLang(lang);
+const altHref = url(alt, hasAlternate ? path : '');
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {
+      hasAlternate && (
+        <>
+          <link rel="alternate" hreflang={lang} href={canonical} />
+          <link rel="alternate" hreflang={alt} href={new URL(url(alt, path), Astro.site).href} />
+          <link rel="alternate" hreflang="x-default" href={new URL(url('en', path), Astro.site).href} />
+        </>
+      )
+    }
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
+    <meta name="theme-color" content="#f6f5f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script is:inline>
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{d.nav.skip}</a>
+    <Header lang={lang} path={path} altHref={altHref} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

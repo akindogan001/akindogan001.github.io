@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactForm from '../../components/ContactForm.tsx';
+import site from '../../data/site.json';
+import { t, langPaths, type Lang } from '../../lib/i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const d = t(lang);
+const channels = [
+  { label: 'E-mail', value: site.email, href: site.email ? `mailto:${site.email}` : '' },
+  { label: 'LinkedIn', value: 'LinkedIn', href: site.linkedin },
+  { label: 'GitHub', value: site.github.replace('https://', ''), href: site.github },
+].filter((c) => c.href);
+---
+
+<Base lang={lang} path="contact" title={d.contact.title} description={d.contact.lead}>
+  <section class="container page-head">
+    <h1>{d.contact.title}</h1>
+    <p class="lead">{d.contact.lead}</p>
+    <p class="note mono">{d.contact.cvNote}</p>
+  </section>
+
+  <div class="container section contact">
+    <div class="contact__form">
+      {
+        site.formEndpoint ? (
+          <ContactForm client:visible endpoint={site.formEndpoint} labels={d.contact.form} subjects={d.contact.subjects} />
+        ) : (
+          <p class="note">{d.contact.noForm}</p>
+        )
+      }
+    </div>
+    <aside>
+      <h2 class="dim-title">{d.contact.channels}</h2>
+      <ul class="channels">
+        {
+          channels.map((c) => (
+            <li>
+              <span class="mono">{c.label}</span>
+              <a href={c.href} rel="me noopener">
+                {c.value}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .note { font-size: 0.9rem; color: var(--muted); border-left: 3px solid var(--signal); padding-left: 12px; }
+  .contact { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; padding-top: 24px; }
+  @media (max-width: 760px) {
+    .contact { grid-template-columns: 1fr; }
+  }
+  .channels { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .channels li { display: flex; flex-direction: column; }
+  .channels .mono { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+
+  /* React form bileşeni stilleri */
+  .contact__form :global(.contact-form) { display: grid; gap: 16px; }
+  .contact__form :global(.field) { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+  .contact__form :global(.field-row) { display: flex; gap: 16px; flex-wrap: wrap; }
+  .contact__form :global(.field-row > .field) { flex: 1 1 220px; }
+  .contact__form :global(label) { font-size: 0.9rem; font-weight: 500; }
+  .contact__form :global(.req) { color: var(--muted); font-weight: 400; font-size: 0.8rem; }
+  .contact__form :global(input),
+  .contact__form :global(select),
+  .contact__form :global(textarea) {
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    width: 100%;
+  }
+  .contact__form :global(.hp) { position: absolute; left: -9999px; }
+  .contact__form :global(.btn) { justify-self: start; }
+  .contact__form :global(.form-msg) { padding: 12px 14px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+  .contact__form :global(.form-msg--ok) { border-left: 3px solid var(--ok); }
+  .contact__form :global(.form-msg--err) { border-left: 3px solid var(--signal); }
+</style>

@@ -1,0 +1,153 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import LayerStrip from '../../../components/LayerStrip.astro';
+import FlowDiagram from '../../../components/FlowDiagram.astro';
+import { t, url, splitId, otherLang, type Lang } from '../../../lib/i18n';
+import { groupStack, hasTranslation } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('solutions');
+  return entries.map((entry) => {
+    const { lang, slug } = splitId(entry.id);
+    return { params: { lang, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const slug = Astro.params.slug as string;
+const d = t(lang);
+const data = entry.data;
+const { Content } = await render(entry);
+const translated = await hasTranslation(slug, otherLang(lang));
+const stack = groupStack(data.stack);
+---
+
+<Base lang={lang} path={`solutions/${slug}`} title={data.title} description={data.summary} hasAlternate={translated}>
+  <article>
+    <header class="container page-head">
+      <a class="back mono" href={url(lang, 'solutions')}>← {d.common.backToSolutions}</a>
+      <span class="eyebrow">{d.categories[data.category]}</span>
+      <h1>{data.title}</h1>
+      <p class="lead">{data.summary}</p>
+      <div class="facts">
+        {data.status && <span class:list={['status', { 'status--progress': data.status === 'in-progress' }]}>{data.status === 'in-progress' ? d.common.inProgress : d.common.production}</span>}
+        {data.role && <span class="mono facts__role">{d.common.role}: {data.role}</span>}
+      </div>
+    </header>
+
+    <div class="container detail">
+      {
+        data.metrics.length > 0 && (
+          <dl class="metrics">
+            {data.metrics.map((m) => (
+              <div>
+                <dt>{m.label}</dt>
+                <dd>{m.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+
+      {
+        data.layers.length > 0 && (
+          <section>
+            <h2 class="dim-title">{d.common.layers}</h2>
+            <LayerStrip lang={lang} layers={data.layers} showLabels />
+          </section>
+        )
+      }
+
+      {
+        data.flow.length > 0 && (
+          <section>
+            <h2 class="dim-title">{d.common.flow}</h2>
+            <FlowDiagram lang={lang} nodes={data.flow} />
+          </section>
+        )
+      }
+
+      <section class="prose">
+        <Content />
+      </section>
+
+      {
+        data.decisions.length > 0 && (
+          <section>
+            <h2 class="dim-title">{d.common.decisions}</h2>
+            <ol class="adr">
+              {data.decisions.map((x, i) => (
+                <li>
+                  <span class="adr__no mono">ADR-{String(i + 1).padStart(2, '0')}</span>
+                  <dl>
+                    <dt>{d.common.decision}</dt>
+                    <dd class="adr__decision">{x.decision}</dd>
+                    <dt>{d.common.why}</dt>
+                    <dd>{x.why}</dd>
+                    {x.alternative && (
+                      <>
+                        <dt>{d.common.alternative}</dt>
+                        <dd>{x.alternative}</dd>
+                      </>
+                    )}
+                    {x.cost && (
+                      <>
+                        <dt>{d.common.cost}</dt>
+                        <dd>{x.cost}</dd>
+                      </>
+                    )}
+                  </dl>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )
+      }
+
+      <section>
+        <h2 class="dim-title">{d.common.stack}</h2>
+        <div class="stack-groups">
+          {
+            [...stack].map(([group, items]) => (
+              <div>
+                <span class="eyebrow">{d.stackGroups[group as keyof typeof d.stackGroups] ?? group}</span>
+                <ul class="tag-list">
+                  {items.map((s) => (
+                    <li class="tag">{s.name}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <p><a href={url(lang, 'solutions')}>← {d.common.backToSolutions}</a></p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back { display: inline-block; font-size: 0.85rem; margin-bottom: 24px; text-decoration: none; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .facts__role { font-size: 0.85rem; color: var(--muted); }
+  .detail { display: flex; flex-direction: column; gap: 44px; padding-top: 32px; padding-bottom: 48px; }
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 1px; margin: 0; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .metrics > div { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column-reverse; gap: 2px; }
+  .metrics dt { font-size: 0.85rem; color: var(--muted); }
+  .metrics dd { margin: 0; font: 600 1.35rem var(--font-mono); }
+  .adr { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+  .adr li { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 16px 20px; }
+  .adr__no { font-size: 0.75rem; color: var(--muted); }
+  .adr dl { margin: 8px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; }
+  .adr dt { font: 0.75rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding-top: 3px; }
+  .adr dd { margin: 0; }
+  .adr__decision { font-weight: 600; }
+  @media (max-width: 560px) {
+    .adr dl { grid-template-columns: 1fr; }
+    .adr dd { margin-bottom: 6px; }
+  }
+  .stack-groups { display: flex; flex-wrap: wrap; gap: 20px 36px; }
+</style>

@@ -1,0 +1,119 @@
+---
+import { t, url, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  path: string;
+  altHref: string;
+}
+const { lang, path, altHref } = Astro.props;
+const d = t(lang);
+const links = [
+  { key: 'solutions', label: d.nav.solutions },
+  { key: 'approaches', label: d.nav.approaches },
+  { key: 'about', label: d.nav.about },
+  { key: 'contact', label: d.nav.contact },
+];
+const section = path.split('/')[0];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href={url(lang)}>
+      <span class="brand__bars" aria-hidden="true"><i class="l-field"></i><i class="l-acquisition"></i><i class="l-integration"></i><i class="l-decision"></i></span>
+      <span>Akın Doğan</span>
+    </a>
+    <nav aria-label={d.nav.menu}>
+      <ul class="nav">
+        {
+          links.map((l) => (
+            <li>
+              <a href={url(lang, l.key)} aria-current={section === l.key ? 'page' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="tools">
+      <a class="tool" href={altHref} hreflang={lang === 'tr' ? 'en' : 'tr'} data-lang-switch title={d.common.switchLang}>
+        {d.common.switchLangShort}
+      </a>
+      <button class="tool" type="button" data-theme-toggle aria-label={d.common.themeToggle} title={d.common.themeToggle}>
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" /><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor" /></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const root = document.documentElement;
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const current = root.dataset.theme ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+  document.querySelector('[data-lang-switch]')?.addEventListener('click', (e) => {
+    const lang = (e.currentTarget as HTMLAnchorElement).hreflang;
+    try {
+      localStorage.setItem('lang', lang);
+    } catch {}
+  });
+</script>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: 16px 24px;
+    min-height: 60px;
+    flex-wrap: wrap;
+    padding-block: 8px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    margin-right: auto;
+  }
+  .brand__bars { display: inline-flex; gap: 2px; }
+  .brand__bars i { width: 4px; height: 16px; border-radius: 1px; background: var(--layer); }
+  .nav { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 0; padding: 0; }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+  .nav a:hover, .nav a[aria-current='page'] { color: var(--text); }
+  .nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+  .tools { display: flex; gap: 6px; }
+  .tool {
+    display: inline-grid;
+    place-items: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    font: 500 0.8rem var(--font-mono);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .tool:hover { border-color: var(--line-strong); }
+  @media (max-width: 640px) {
+    nav { order: 3; width: 100%; }
+  }
+</style>

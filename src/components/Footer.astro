@@ -1,0 +1,58 @@
+---
+import site from '../data/site.json';
+import { t, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = t(lang);
+const rev = new Date().toISOString().slice(0, 7); // build zamanı, YYYY-MM
+const links = [
+  { label: 'GitHub', href: site.github },
+  { label: 'LinkedIn', href: site.linkedin },
+  { label: 'E-mail', href: site.email ? `mailto:${site.email}` : '' },
+].filter((l) => l.href);
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <!-- Teknik resimdeki antet bloğu -->
+    <dl class="title-block">
+      <div><dt>{d.footer.drawnBy}</dt><dd>{site.name}</dd></div>
+      <div><dt>{d.footer.revision}</dt><dd>{rev}</dd></div>
+      <div><dt>{d.footer.scale}</dt><dd>1:1</dd></div>
+      <div><dt>{d.footer.sheet}</dt><dd>{lang.toUpperCase()}</dd></div>
+      <div class="title-block__links">
+        <dt class="sr-only">Links</dt>
+        <dd>{links.map((l) => <a href={l.href} rel="me noopener">{l.label}</a>)}</dd>
+      </div>
+    </dl>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding: 40px 0 32px; }
+  .title-block {
+    display: grid;
+    grid-template-columns: repeat(4, auto) 1fr;
+    border: 1px solid var(--line-strong);
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--surface);
+  }
+  .title-block > div { padding: 8px 14px; border-right: 1px solid var(--line-strong); }
+  .title-block > div:last-child { border-right: 0; }
+  dt { color: var(--muted); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.06em; }
+  dd { margin: 0; }
+  .title-block__links { display: flex; align-items: center; justify-content: flex-end; }
+  .title-block__links dd { display: flex; gap: 16px; flex-wrap: wrap; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 640px) {
+    .title-block { grid-template-columns: 1fr 1fr; }
+    .title-block > div { border-right: 0; border-bottom: 1px solid var(--line-strong); }
+    .title-block > div:nth-child(odd):not(:last-child) { border-right: 1px solid var(--line-strong); }
+    .title-block__links { grid-column: 1 / -1; justify-content: flex-start; border-bottom: 0 !important; }
+  }
+</style>

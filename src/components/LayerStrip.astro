@@ -1,0 +1,39 @@
+---
+/** Bir çözümün kapsadığı katmanları 4 parçalı şerit olarak gösterir. */
+import { LAYERS } from '../lib/layers';
+import { t, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  layers: string[];
+  showLabels?: boolean;
+}
+const { lang, layers, showLabels = false } = Astro.props;
+const d = t(lang);
+const covered = LAYERS.filter((id) => layers.includes(id));
+const label = `${d.common.layers}: ${covered.map((id) => d.layers[id].name).join(', ')}`;
+---
+
+{
+  layers.length > 0 && (
+    <div class:list={['strip', { 'strip--labels': showLabels }]} role="img" aria-label={label} title={label}>
+      {LAYERS.map((id) => (
+        <span class:list={[`strip__seg l-${id}`, { on: layers.includes(id) }]}>
+          {showLabels && <span class="strip__label">{d.layers[id].code} {d.layers[id].name}</span>}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+  .strip__seg { height: 6px; border-radius: 1px; background: var(--surface-2); border: 1px solid var(--line); }
+  .strip__seg.on { background: var(--layer); border-color: var(--layer); }
+  .strip--labels .strip__seg { height: auto; padding: 4px 8px; }
+  .strip__label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+  .strip--labels .on .strip__label { color: var(--accent-contrast); }
+  @media (max-width: 560px) {
+    .strip--labels { grid-template-columns: 1fr 1fr; }
+  }
+</style>

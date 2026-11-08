@@ -1,0 +1,99 @@
+---
+/** Ana sayfadaki 4 katmanlı veri yolculuğu diyagramı. Metinler i18n'den gelir. */
+import { LAYERS } from '../lib/layers';
+import { t, url, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = t(lang);
+---
+
+<figure class="journey" aria-labelledby="journey-title">
+  <figcaption id="journey-title" class="journey__caption">
+    <span>{d.home.diagramTitle}</span>
+    <span class="journey__hint">{d.home.diagramHint}</span>
+  </figcaption>
+  <ol class="journey__layers">
+    {
+      LAYERS.map((id) => {
+        const l = d.layers[id];
+        return (
+          <li class={`journey__layer l-${id}`}>
+            <a href={`${url(lang, 'solutions')}?layer=${id}`}>
+              <span class="journey__code">{l.code}</span>
+              <span class="journey__name">{l.name}</span>
+              <span class="journey__desc">{l.desc}</span>
+              <span class="journey__items">{l.items.join(' · ')}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ol>
+</figure>
+
+<style>
+  .journey { margin: 0; }
+  .journey__caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px 16px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .journey__hint { text-transform: none; letter-spacing: 0; }
+  .journey__layers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    counter-reset: layer;
+  }
+  .journey__layer { position: relative; }
+  /* Katmanlar arası veri akışı oku */
+  .journey__layer + .journey__layer::before {
+    content: '→';
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    color: var(--line-strong);
+  }
+  .journey__layer a {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--layer);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .journey__layer a:hover { border-color: var(--layer); }
+  .journey__code { font-family: var(--font-mono); font-size: 0.75rem; color: var(--layer); }
+  .journey__name { font-weight: 600; font-size: 1.1rem; }
+  .journey__desc { font-size: 0.92rem; color: var(--muted); }
+  .journey__items { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
+  @media (max-width: 860px) {
+    .journey__layers { grid-template-columns: 1fr; gap: 26px; }
+    .journey__layer + .journey__layer::before {
+      content: '↓';
+      left: 50%;
+      top: -22px;
+      transform: translateX(-50%);
+    }
+  }
+</style>
