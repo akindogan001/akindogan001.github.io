@@ -4,7 +4,7 @@ import LayerDiagram from '../../components/LayerDiagram.astro';
 import SolutionCard from '../../components/SolutionCard.astro';
 import site from '../../data/site.json';
 import { t, url, langPaths, type Lang } from '../../lib/i18n';
-import { getSolutions, getApproaches, groupStack, allStackIds } from '../../lib/content';
+import { getSolutions, getApproaches, groupStack, skillStackIds } from '../../lib/content';
 
 export const getStaticPaths = langPaths;
 const lang = Astro.params.lang as Lang;
@@ -13,7 +13,7 @@ const d = t(lang);
 const solutions = await getSolutions(lang);
 const featured = solutions.filter((s) => s.data.featured).slice(0, 4);
 const approaches = await getApproaches(lang);
-const stackGroups = groupStack(allStackIds());
+const stackGroups = groupStack(skillStackIds());
 const groupOrder = ['ot', 'protocols', 'languages', 'backend', 'data', 'frontend', 'mobile', 'devops'] as const;
 
 const jsonLd = {
@@ -167,7 +167,7 @@ const jsonLd = {
     border-radius: 2px;
   }
 
-  .expertise { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .expertise { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
   .expertise li { padding: 16px; background: var(--surface); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: var(--radius); }
   .expertise h3 { font-size: 1rem; margin: 0 0 6px; }
   .expertise p { margin: 0; font: 0.8rem/1.6 var(--font-mono); color: var(--muted); }

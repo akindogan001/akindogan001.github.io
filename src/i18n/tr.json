@@ -91,7 +91,7 @@
   "home": {
     "eyebrow": "Endüstriyel yazılım mühendisi",
     "title": "Sahadan karara: üretim verinizin yolculuğunu uçtan uca tasarlıyorum.",
-    "lead": "Makinelerden veriyi toplayan, sistemler arasında kayıpsız taşıyan ve karara dönüştüren yazılımlar geliştiriyorum. PLC/SCADA entegrasyonu, MES modülleri, gerçek zamanlı telemetri ve veri senkronizasyonu üzerine 7 yılı aşkın deneyim.",
+    "lead": "Makinelerden veriyi toplayan, sistemler arasında kayıpsız taşıyan ve karara dönüştüren yazılımlar geliştiriyorum. PLC/SCADA entegrasyonu, MES modülleri, gerçek zamanlı telemetri ve veri senkronizasyonu üzerine 8 yılı aşkın deneyim.",
     "ctaPrimary": "Çözümleri incele",
     "ctaSecondary": "Projenizi konuşalım",
     "diagramTitle": "Veri yolculuğu",
@@ -113,6 +113,7 @@
       { "title": "Veri senkronizasyonu", "items": ["Çoklu veritabanı senkronizasyonu", "Artımlı replikasyon", "Trigger tabanlı değişiklik takibi"] },
       { "title": "Robotik ve simülasyon", "items": ["Filo trafik yönetimi", "Dijital ikiz", "Saha simülasyonu"] },
       { "title": "Mimari ve mühendislik", "items": ["Modüler monolit", "Multithreading", "Arka plan servisleri", "Performans optimizasyonu"] },
+      { "title": "AI destekli geliştirme", "items": ["Önce gereksinim ve mimari", "Proje kuralları ve brief dosyaları", "Kod inceleme ve testle doğrulama", "Yeni platformlarda hızlı ürün geliştirme"] },
       { "title": "Teknik liderlik", "items": ["Sprint planlama", "Kod incelemeleri", "Görev planlama", "Mentorluk"] }
     ],
     "featuredTitle": "Öne çıkan sistemler",
@@ -142,7 +143,8 @@
     "story": [
       "Saha tarafından başladım: PLC kontrollü makineleri devreye aldım, Structured Text ve Ladder ile kontrol mantığı yazdım, sahada hata ayıkladım.",
       "Zamanla katmanlarda yukarı çıktım: cihaz haberleşme servisleri, MES modülleri, veri senkronizasyon platformları ve dashboard'lar. Bunu yaparken sahada olanı gözden kaçırmadım.",
-      "Bugün veriyi makineden karara taşıyan sistemler tasarlıyorum. Önceliğim güvenilirlik, sadelik ve test edilebilirlik."
+      "Bugün veriyi makineden karara taşıyan sistemler tasarlıyorum. Önceliğim güvenilirlik, sadelik ve test edilebilirlik.",
+      "AI araçlarını geliştirme sürecimin aktif bir parçası olarak kullanıyorum. Gereksinimi ve mimariyi ben tanımlıyorum, kararları ben veriyorum; kodun büyük kısmını AI üretiyor, ben inceleyip test ediyorum. Bu sayede daha önce çalışmadığım platformlarda da hızlı ve kontrollü şekilde ürün çıkarabiliyorum."
     ],
     "missionLabel": "Misyon",
     "mission": "Makine verisini güvenilir, izlenebilir ve karar verdiren bir bilgiye dönüştürmek.",
@@ -154,7 +156,8 @@
       "7/24 çalışan sistemlerde hata toleransı bir özellik değil, zorunluluktur.",
       "Modüler, test edilebilir ve dokümante teslim.",
       "Önce simülasyon, sonra saha.",
-      "Üç yıl sonra da anlaşılabilecek en sade tasarımı seç."
+      "Üç yıl sonra da anlaşılabilecek en sade tasarımı seç.",
+      "AI'ı hızlandırıcı olarak kullan; mimari, kararlar ve doğrulama insanda kalsın."
     ]
   },
   "contact": {

@@ -5,7 +5,8 @@ import { splitId, type Lang } from './i18n';
 export type Solution = CollectionEntry<'solutions'> & { slug: string; lang: Lang };
 export type Approach = CollectionEntry<'approaches'> & { slug: string; lang: Lang };
 
-type StackItem = { name: string; group: string };
+/** skill: false → projede kullanıldı ama ana sayfadaki yetenek listesinde gösterilmez. */
+type StackItem = { name: string; group: string; skill?: boolean };
 const stackMap = stack as Record<string, StackItem>;
 
 export async function getSolutions(lang: Lang): Promise<Solution[]> {
@@ -47,3 +48,4 @@ export function groupStack(ids: string[]): Map<string, StackItem[]> {
 }
 
 export const allStackIds = () => Object.keys(stackMap);
+export const skillStackIds = () => allStackIds().filter((id) => stackMap[id].skill !== false);
