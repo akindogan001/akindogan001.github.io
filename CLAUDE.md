@@ -52,9 +52,13 @@ src/
 ## Çözüm (solution) dosyası alanları
 
 `title`, `summary`, `category` (monitoring | automation | mes | integration | robotics | personal),
-`layers[]`, `stack[]` (stack.json id'leri), `metrics[]` {value,label}, `role`, `status` (production | in-progress),
+`layers[]`, `stack[]` (stack.json id'leri), `metrics[]` {value,label}, `role`, `status` (production | completed | testing | in-progress | planned),
 `flow[]` {type, label, layer}, `decisions[]` {decision, why, alternative?, cost?}, `featured`, `order`.
 Gövde: `## Problem`, `## Yaklaşım`, gerekirse `## Sonuç` / `## Durum`.
+
+Çözümler sayfası iki gruptur: `category: personal` olanlar "Kişisel ürünler", diğerleri (işveren ve outsource
+müşteri projeleri) "Kurumsal ve müşteri projeleri". Önceki/şu anki işveren ayrımı sitede gösterilmez.
+Ana sayfada `featured: true` olan ilk 4 çözüm 2x2 gösterilir.
 
 ## Komutlar
 

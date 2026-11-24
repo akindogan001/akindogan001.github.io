@@ -9,6 +9,7 @@ metrics:
   - { value: "Foreground service", label: "background drive tracking" }
   - { value: "Android 8.0+", label: "minimum version" }
 status: testing
+featured: true
 order: 23
 flow:
   - { type: device, label: "Phone location (FusedLocationProvider, 1 Hz)", layer: field }

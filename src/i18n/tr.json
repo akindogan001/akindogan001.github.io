@@ -130,6 +130,8 @@
     "lead": "Tasarlayıp geliştirdiğim sistemler; problem, mimari ve mühendislik kararlarıyla. Müşteri adları ve gizli detaylar bilinçli olarak yer almıyor.",
     "filterLabel": "Katmana göre filtrele",
     "filterAll": "Tümü",
+    "groupCorporate": "Kurumsal ve müşteri projeleri",
+    "groupPersonal": "Kişisel ürünler",
     "empty": "Bu katmanda henüz çözüm yok."
   },
   "approaches": {

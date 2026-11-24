@@ -130,6 +130,8 @@
     "lead": "Systems I have designed and built, described by problem, architecture and engineering decisions. Customer names and confidential details are intentionally left out.",
     "filterLabel": "Filter by layer",
     "filterAll": "All",
+    "groupCorporate": "Company and client projects",
+    "groupPersonal": "Personal products",
     "empty": "No solutions on this layer yet."
   },
   "approaches": {

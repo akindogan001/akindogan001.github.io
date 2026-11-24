@@ -1,10 +1,11 @@
 ---
 title: Batarya (BMS) İzleme ve Kalibrasyon
 summary: Batarya yönetim sistemleriyle CANbus üzerinden haberleşen izleme, görselleştirme ve kalibrasyon yazılımı.
-category: personal
+category: monitoring
 layers: [field, acquisition, decision]
 stack: [csharp, dotnet, winforms, canbus]
-order: 22
+status: completed
+order: 8
 flow:
   - { type: device, label: "Batarya paketleri / BMS", layer: field }
   - { type: service, label: "CANbus arayüzü", layer: acquisition }
@@ -23,4 +24,4 @@ Batarya paketlerinin durumunun izlenmesi ve BMS kalibrasyonunun sahada güvenili
 
 ## Durum
 
-Kişisel proje.
+Bir müşteri için outsource olarak geliştirildi.

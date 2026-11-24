@@ -11,7 +11,7 @@ const lang = Astro.params.lang as Lang;
 const d = t(lang);
 
 const solutions = await getSolutions(lang);
-const featured = solutions.filter((s) => s.data.featured).slice(0, 3);
+const featured = solutions.filter((s) => s.data.featured).slice(0, 4);
 const approaches = await getApproaches(lang);
 const stackGroups = groupStack(allStackIds());
 const groupOrder = ['ot', 'protocols', 'languages', 'backend', 'data', 'frontend', 'mobile', 'devops'] as const;
@@ -77,7 +77,7 @@ const jsonLd = {
       <section class="section">
         <div class="container">
           <h2 class="dim-title">{d.home.featuredTitle}</h2>
-          <div class="grid-3">
+          <div class="featured">
             {featured.map((s) => (
               <SolutionCard lang={lang} solution={s} />
             ))}
@@ -192,6 +192,11 @@ const jsonLd = {
   .stack dd { margin: 0; }
   @media (max-width: 560px) {
     .stack__group { grid-template-columns: 1fr; }
+  }
+
+  .featured { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) {
+    .featured { grid-template-columns: repeat(2, 1fr); }
   }
 
   .cta { text-align: center; display: flex; flex-direction: column; align-items: center; }

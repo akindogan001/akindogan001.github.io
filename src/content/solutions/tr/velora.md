@@ -9,6 +9,7 @@ metrics:
   - { value: "Foreground service", label: "arka planda sürüş takibi" }
   - { value: "Android 8.0+", label: "minimum sürüm" }
 status: testing
+featured: true
 order: 23
 flow:
   - { type: device, label: "Telefon konumu (FusedLocationProvider, 1 Hz)", layer: field }
