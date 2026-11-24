@@ -2,13 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import ContactForm from '../../components/ContactForm.tsx';
 import site from '../../data/site.json';
+import { encodeMail, maskMail } from '../../lib/mail';
 import { t, langPaths, type Lang } from '../../lib/i18n';
 
 export const getStaticPaths = langPaths;
 const lang = Astro.params.lang as Lang;
 const d = t(lang);
 const channels = [
-  { label: 'E-mail', value: site.email, href: site.email ? `mailto:${site.email}` : '' },
+  { label: 'E-mail', value: maskMail(site.email), href: site.email ? '#' : '', mail: site.email ? encodeMail(site.email) : undefined },
   { label: 'LinkedIn', value: 'LinkedIn', href: site.linkedin },
   { label: 'GitHub', value: site.github.replace('https://', ''), href: site.github },
 ].filter((c) => c.href);
@@ -24,8 +25,14 @@ const channels = [
   <div class="container section contact">
     <div class="contact__form">
       {
-        site.formEndpoint ? (
-          <ContactForm client:visible endpoint={site.formEndpoint} labels={d.contact.form} subjects={d.contact.subjects} />
+        site.formEndpoint || site.email ? (
+          <ContactForm
+            client:visible
+            endpoint={site.formEndpoint || undefined}
+            mail={site.email ? encodeMail(site.email) : undefined}
+            labels={d.contact.form}
+            subjects={d.contact.subjects}
+          />
         ) : (
           <p class="note">{d.contact.noForm}</p>
         )
@@ -38,7 +45,7 @@ const channels = [
           channels.map((c) => (
             <li>
               <span class="mono">{c.label}</span>
-              <a href={c.href} rel="me noopener">
+              <a href={c.href} data-mail={c.mail} data-mail-text={c.mail ? "" : undefined} rel="me noopener">
                 {c.value}
               </a>
             </li>

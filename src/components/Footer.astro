@@ -1,5 +1,6 @@
 ---
 import site from '../data/site.json';
+import { encodeMail } from '../lib/mail';
 import { t, type Lang } from '../lib/i18n';
 
 interface Props {
@@ -11,7 +12,7 @@ const rev = new Date().toISOString().slice(0, 7); // build zamanı, YYYY-MM
 const links = [
   { label: 'GitHub', href: site.github },
   { label: 'LinkedIn', href: site.linkedin },
-  { label: 'E-mail', href: site.email ? `mailto:${site.email}` : '' },
+  { label: 'E-mail', href: site.email ? '#' : '', mail: site.email ? encodeMail(site.email) : undefined },
 ].filter((l) => l.href);
 ---
 
@@ -25,11 +26,20 @@ const links = [
       <div><dt>{d.footer.sheet}</dt><dd>{lang.toUpperCase()}</dd></div>
       <div class="title-block__links">
         <dt class="sr-only">Links</dt>
-        <dd>{links.map((l) => <a href={l.href} rel="me noopener">{l.label}</a>)}</dd>
+        <dd>{links.map((l) => <a href={l.href} data-mail={l.mail} rel="me noopener">{l.label}</a>)}</dd>
       </div>
     </dl>
   </div>
 </footer>
+
+<script>
+  import { decodeMail } from '../lib/mail';
+  for (const a of document.querySelectorAll<HTMLAnchorElement>('a[data-mail]')) {
+    const address = decodeMail(a.dataset.mail ?? '');
+    a.href = `mailto:${address}`;
+    if (a.dataset.mailText !== undefined) a.textContent = address;
+  }
+</script>
 
 <style>
   .site-footer { padding: 40px 0 32px; }

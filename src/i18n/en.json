@@ -159,7 +159,7 @@
   },
   "contact": {
     "title": "Contact",
-    "lead": "Projects, outsourcing, team support or a job opportunity — write a few sentences and I will get back to you within 24 hours.",
+    "lead": "Projects, outsourcing, team support or a job opportunity — write a few sentences and I will get back to you as soon as possible.",
     "cvNote": "My detailed CV is shared on request. Choose “CV request” below.",
     "channels": "Other channels",
     "noForm": "The contact form is not active yet. You can reach me through the channels below.",
@@ -171,6 +171,8 @@
       "purpose": "Position / purpose",
       "message": "Message",
       "send": "Send",
+      "sendMail": "Send by e-mail",
+      "mailOpened": "Your e-mail app has opened with the message ready. Don't forget to send it.",
       "sending": "Sending…",
       "success": "Thank you — your message has arrived. I will get back to you soon.",
       "error": "Something went wrong. Please try again or use one of the channels below.",

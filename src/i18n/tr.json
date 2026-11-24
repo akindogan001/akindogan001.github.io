@@ -159,7 +159,7 @@
   },
   "contact": {
     "title": "İletişim",
-    "lead": "Proje, outsource, ekip desteği ya da iş fırsatı. Birkaç cümle yazın, 24 saat içinde dönüş yapayım.",
+    "lead": "Proje, outsource, ekip desteği ya da iş fırsatı. Birkaç cümle yazın, en kısa sürede dönüş yapayım.",
     "cvNote": "Detaylı CV'mi talep üzerine paylaşıyorum. Aşağıdan “CV talebi” konusunu seçebilirsiniz.",
     "channels": "Diğer kanallar",
     "noForm": "İletişim formu henüz aktif değil. Aşağıdaki kanallardan ulaşabilirsiniz.",
@@ -171,6 +171,8 @@
       "purpose": "Pozisyon / amaç",
       "message": "Mesaj",
       "send": "Gönder",
+      "sendMail": "E-posta ile gönder",
+      "mailOpened": "E-posta uygulamanız mesaj hazır şekilde açıldı. Göndermeyi unutmayın.",
       "sending": "Gönderiliyor…",
       "success": "Teşekkürler, mesajınız ulaştı. En kısa sürede dönüş yapacağım.",
       "error": "Bir sorun oluştu. Lütfen tekrar deneyin ya da aşağıdaki kanalları kullanın.",
