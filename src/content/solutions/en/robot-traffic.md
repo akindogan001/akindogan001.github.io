@@ -3,7 +3,7 @@ title: Robot Fleet Traffic Management
 summary: Generalized traffic management for mobile robot fleets in warehouse automation, reserving junctions and directions in time so robots flow without stopping or colliding.
 category: robotics
 layers: [field, acquisition, decision]
-stack: [csharp, dotnet]
+stack: [csharp, dotnet, winforms, webview2, react, typescript]
 status: in-progress
 featured: true
 order: 3
@@ -33,6 +33,8 @@ Robot types with different jobs (depalletizing, picking) have to move efficientl
 - The fleet is monitored top-down; every robot has an assigned home position and a station-based state (home, roaming, charging, etc.).
 - Generalized traffic rules are defined and robots behave according to them.
 - Junction management is integrated with station and state tracking.
+- Paths are single-lane: robots cannot pass side by side; a path can be used in both directions, but robots must never meet head-on.
+- Each robot receives its set of targets at assignment; the visiting order may change with traffic, and the robot picks its next target from its current position and the traffic situation.
 
 ## Status
 

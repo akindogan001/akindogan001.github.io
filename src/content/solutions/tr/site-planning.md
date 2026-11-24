@@ -3,7 +3,7 @@ title: Saha Planlama ve Trafik Simülasyonu
 summary: Robotlu bir depo sahası için taslak haritadan robot sayısı tahminine ve simülasyon testlerine uzanan, dijital ikiz tabanlı planlama aracı.
 category: robotics
 layers: [decision]
-stack: [csharp, dotnet]
+stack: [csharp, dotnet, winforms, webview2, react, typescript]
 status: in-progress
 order: 5
 flow:

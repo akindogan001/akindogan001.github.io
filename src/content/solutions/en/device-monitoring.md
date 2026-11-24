@@ -3,7 +3,7 @@ title: Industrial Motor Monitoring Platform
 summary: A multi-site monitoring platform that collects data from 200+ industrial devices at sub-second intervals for predictive maintenance and energy efficiency.
 category: monitoring
 layers: [field, acquisition, integration, decision]
-stack: [csharp, dotnet, windows-services, modbus, tcpip, react, typescript]
+stack: [csharp, dotnet, windows-services, modbus, tcpip, mssql, react, typescript]
 metrics:
   - { value: "200+", label: "concurrent devices" }
   - { value: "< 1 s", label: "polling interval on LAN" }

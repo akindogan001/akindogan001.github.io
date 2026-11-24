@@ -4,7 +4,7 @@ summary: Robot, el terminali, trafik kontrolü ve saha cihazlarından gelen alar
 category: integration
 layers: [field, integration, decision]
 stack: [csharp, dotnet, rest]
-status: in-progress
+status: completed
 order: 4
 flow:
   - { type: device, label: "Robotlar, el terminalleri, saha cihazları", layer: field }
@@ -37,4 +37,4 @@ Saha sistemindeki farklı bileşenler alarm ve uyarı üretiyor; ancak her biri 
 
 ## Durum
 
-Geliştirme aşamasında.
+Tamamlandı.

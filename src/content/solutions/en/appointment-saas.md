@@ -2,7 +2,8 @@
 title: Appointment Management SaaS
 summary: An appointment management system for businesses across different industries.
 category: personal
-stack: [csharp, dotnet]
+stack: [csharp, dotnet, react, typescript]
+status: completed
 order: 21
 ---
 
@@ -12,4 +13,4 @@ An appointment management system that businesses from different industries can u
 
 ## Status
 
-Personal project.
+Personal project. Completed, not yet publicly released.

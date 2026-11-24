@@ -3,7 +3,7 @@ title: Robot Filo Trafik Yönetimi
 summary: Depo otomasyonunda mobil robot filosunu, kavşak ve yönleri zamana göre rezerve ederek durmadan ve çakışmadan yöneten genelleştirilmiş trafik yönetimi.
 category: robotics
 layers: [field, acquisition, decision]
-stack: [csharp, dotnet]
+stack: [csharp, dotnet, winforms, webview2, react, typescript]
 status: in-progress
 featured: true
 order: 3
@@ -33,6 +33,8 @@ Farklı görevlere (depalletizing, picking) sahip robot tiplerinin aynı sahada,
 - Filo yukarıdan aşağı izlenir; her robotun atanmış bir başlangıç (home) noktası ve istasyon bazlı durumu vardır (home, dolaşımda, şarjda vb.).
 - Genelleştirilmiş trafik kuralları tanımlanır, robotlar bu kurallara göre davranır.
 - Kavşak yönetimi istasyon ve durum takibiyle entegre çalışır.
+- Yollar tek şeritlidir: robotlar yan yana geçemez; bir yol iki yönde kullanılabilir ama robotlar asla karşı karşıya gelmemelidir.
+- Her robota ilk atamada hedef kümesi verilir; ziyaret sırası trafiğe göre değişebilir, robot sıradaki hedefini mevcut konumundan ve trafik durumundan seçer.
 
 ## Durum
 

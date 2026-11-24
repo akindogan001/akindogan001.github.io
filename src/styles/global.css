@@ -116,6 +116,7 @@ code, .mono { font-family: var(--font-mono); }
   background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent);
 }
 .status--progress::before { background: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 25%, transparent); }
+.status--planned::before { background: transparent; border: 1px solid var(--muted); box-shadow: none; }
 
 /* ---------- Kart ---------- */
 .card {

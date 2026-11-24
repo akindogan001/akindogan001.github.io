@@ -2,8 +2,8 @@
 title: TradeForge — Kripto İşlem Platformu
 summary: Plugin tabanlı sinyal botları ve manuel işlem desteğiyle, borsa API'si üzerinden çalışan kişisel işlem platformu.
 category: personal
-stack: [csharp, dotnet]
-status: in-progress
+stack: [csharp, dotnet, react, typescript]
+status: testing
 order: 20
 decisions:
   - decision: Her sinyal üretici bot ayrı bir plugin projesidir; ana uygulama tek bir projedir.
@@ -17,9 +17,12 @@ Otomatik işlem botlarını ve manuel işlemi tek bir platformda toplamak. Strat
 ## Yaklaşım
 
 - Güncel .NET sürümü, sade bir klasör yapısı.
-- Borsa entegrasyonu Bitget API üzerinden.
+- React + TypeScript arayüz, C# .NET backend.
+- Önce Bitget; mimari başka borsaların da eklenebileceği şekilde tasarlandı.
+- Botlar sinyal üretir, pozisyonları otomatik açar ve kapatır.
+- İlk sinyal stratejisi: yönü 4 saatlik ve günlük trende göre belirleyen, en fazla 15 dakikalık scalp işlemleri.
 - Her sinyal botu bağımsız bir plugin projesi.
 
 ## Durum
 
-Kişisel proje, geliştirme aşamasında.
+Kişisel proje. Geliştirmesi tamamlandı, test aşamasında.

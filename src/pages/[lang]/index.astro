@@ -14,7 +14,7 @@ const solutions = await getSolutions(lang);
 const featured = solutions.filter((s) => s.data.featured).slice(0, 3);
 const approaches = await getApproaches(lang);
 const stackGroups = groupStack(allStackIds());
-const groupOrder = ['ot', 'protocols', 'languages', 'backend', 'data', 'frontend', 'devops'] as const;
+const groupOrder = ['ot', 'protocols', 'languages', 'backend', 'data', 'frontend', 'mobile', 'devops'] as const;
 
 const jsonLd = {
   '@context': 'https://schema.org',

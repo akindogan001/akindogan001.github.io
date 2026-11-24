@@ -3,7 +3,7 @@ title: Site Planning and Traffic Simulation
 summary: A digital-twin-based planning tool for robotic warehouse sites, from a draft map to fleet size estimation and simulation tests.
 category: robotics
 layers: [decision]
-stack: [csharp, dotnet]
+stack: [csharp, dotnet, winforms, webview2, react, typescript]
 status: in-progress
 order: 5
 flow:

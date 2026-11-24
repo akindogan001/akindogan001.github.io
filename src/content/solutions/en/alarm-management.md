@@ -4,7 +4,7 @@ summary: A reusable module that handles alarms and warnings from robots, handhel
 category: integration
 layers: [field, integration, decision]
 stack: [csharp, dotnet, rest]
-status: in-progress
+status: completed
 order: 4
 flow:
   - { type: device, label: "Robots, handheld terminals, field devices", layer: field }
@@ -37,4 +37,4 @@ Different components of the site system raise alarms and warnings, each in its o
 
 ## Status
 
-In development.
+Completed.

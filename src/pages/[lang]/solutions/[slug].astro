@@ -5,6 +5,7 @@ import LayerStrip from '../../../components/LayerStrip.astro';
 import FlowDiagram from '../../../components/FlowDiagram.astro';
 import { t, url, splitId, otherLang, type Lang } from '../../../lib/i18n';
 import { groupStack, hasTranslation } from '../../../lib/content';
+import { statusLabel, statusClass } from '../../../lib/status';
 
 export async function getStaticPaths() {
   const entries = await getCollection('solutions');
@@ -32,7 +33,7 @@ const stack = groupStack(data.stack);
       <h1>{data.title}</h1>
       <p class="lead">{data.summary}</p>
       <div class="facts">
-        {data.status && <span class:list={['status', { 'status--progress': data.status === 'in-progress' }]}>{data.status === 'in-progress' ? d.common.inProgress : d.common.production}</span>}
+        {data.status && <span class={statusClass(data.status)}>{statusLabel(d, data.status)}</span>}
         {data.role && <span class="mono facts__role">{d.common.role}: {data.role}</span>}
       </div>
     </header>
@@ -106,7 +107,7 @@ const stack = groupStack(data.stack);
         )
       }
 
-      <section>
+      {stack.size > 0 && (<section>
         <h2 class="dim-title">{d.common.stack}</h2>
         <div class="stack-groups">
           {
@@ -122,7 +123,7 @@ const stack = groupStack(data.stack);
             ))
           }
         </div>
-      </section>
+      </section>)}
 
       <p><a href={url(lang, 'solutions')}>← {d.common.backToSolutions}</a></p>
     </div>

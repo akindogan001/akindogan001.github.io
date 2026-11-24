@@ -2,8 +2,8 @@
 title: TradeForge — Crypto Trading Platform
 summary: A personal trading platform working over an exchange API, with plugin-based signal bots and manual trading.
 category: personal
-stack: [csharp, dotnet]
-status: in-progress
+stack: [csharp, dotnet, react, typescript]
+status: testing
 order: 20
 decisions:
   - decision: Each signal-generating bot is a separate plugin project; the main application is a single project.
@@ -17,9 +17,12 @@ Bring automated trading bots and manual trading together on one platform. Strate
 ## Approach
 
 - Current .NET release and a simple folder layout.
-- Exchange integration through the Bitget API.
+- React + TypeScript front end, C# .NET backend.
+- Bitget first; designed so that other exchanges can be added.
+- Bots generate signals and open and close positions automatically.
+- First signal strategy: scalp trades of up to 15 minutes, with direction set by the 4-hour and daily trend.
 - Each signal bot is an independent plugin project.
 
 ## Status
 
-Personal project, in development.
+Personal project. Development is complete; currently in testing.

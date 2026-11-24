@@ -3,7 +3,7 @@ title: Endüstriyel Motor İzleme Platformu
 summary: 200+ endüstriyel cihazdan saniyenin altında aralıklarla veri toplayan, kestirimci bakım ve enerji verimliliği için çok tesisli izleme platformu.
 category: monitoring
 layers: [field, acquisition, integration, decision]
-stack: [csharp, dotnet, windows-services, modbus, tcpip, react, typescript]
+stack: [csharp, dotnet, windows-services, modbus, tcpip, mssql, react, typescript]
 metrics:
   - { value: "200+", label: "eş zamanlı cihaz" }
   - { value: "< 1 sn", label: "yerel ağda okuma aralığı" }

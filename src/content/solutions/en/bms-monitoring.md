@@ -3,7 +3,7 @@ title: Battery (BMS) Monitoring and Calibration
 summary: Monitoring, visualization and calibration software that communicates with battery management systems over CANbus.
 category: personal
 layers: [field, acquisition, decision]
-stack: [csharp, dotnet, canbus]
+stack: [csharp, dotnet, winforms, canbus]
 order: 22
 flow:
   - { type: device, label: "Battery packs / BMS", layer: field }

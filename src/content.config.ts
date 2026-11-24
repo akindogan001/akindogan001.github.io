@@ -16,10 +16,10 @@ const solutions = defineCollection({
     summary: z.string(),
     category: z.enum(['monitoring', 'automation', 'mes', 'integration', 'robotics', 'personal']),
     layers: z.array(layer).default([]),
-    stack: z.array(z.string()).min(1),
+    stack: z.array(z.string()).default([]),
     metrics: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
     role: z.string().optional(),
-    status: z.enum(['production', 'in-progress']).optional(),
+    status: z.enum(['production', 'completed', 'testing', 'in-progress', 'planned']).optional(),
     flow: z.array(z.object({ type: nodeType, label: z.string(), layer })).default([]),
     decisions: z
       .array(
