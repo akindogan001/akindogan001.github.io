@@ -1,0 +1,37 @@
+### Windows
+# Windows thumbnail cache files
+Thumbs.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+# Build / bağımlılıklar
+node_modules/
+dist/
+.astro/
+
+# Ortam ve editör
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+npm-debug.log*
+
+# CV ve özel belgeler bu public repoya ASLA girmez.
+# CV talep üzerine e-postayla paylaşılır.
+private/
+*cv*.pdf
+*CV*.pdf
+*Cv*.pdf
+*cv*.docx
+*CV*.docx
+*ozgecmis*
+*özgeçmiş*
+*resume*

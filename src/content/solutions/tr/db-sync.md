@@ -37,7 +37,7 @@ Farklı sistemler aynı iş verisini (fiyat, stok, müşteri, sipariş) kendi ve
 
 ## Yaklaşım
 
-- İlk kurulum ve gerektiğinde tam eşitleme için **full snapshot**, günlük çalışmada **incremental** replikasyon.
+- İlk kurulum ve gerektiğinde tam eşitleme için **full snapshot**, günlük çalışmada **incremental** replikasyon. Strateji yapılandırılabilir: periyodik full ya da log tabanlı incremental.
 - Değişiklikler kaynakta audit log'a düşer; servis log'u kısa aralıklarla okuyup hedefe uygular.
 - Her uygulama işlemi transaction içinde yapılır; hata durumunda geri alınır ve kayıt error queue'ya alınır.
 - Servisler Docker container olarak Linux sunucuda çalışır.

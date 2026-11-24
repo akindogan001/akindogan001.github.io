@@ -23,5 +23,5 @@ Bayi ve kurumsal müşterilerin, kendilerine özel fiyat ve ürün kataloğuyla 
 ## Yaklaşım
 
 - nopCommerce tabanlı B2B platformunda firma bazlı fiyatlandırma ve müşteri bazlı katalog özelleştirmeleri.
-- ERP ve arka ofis sistemleriyle REST API üzerinden entegrasyon.
+- ERP ve arka ofis sistemleriyle güvenli REST API'ler ve zamanlanmış senkronizasyon servisleri üzerinden entegrasyon.
 - Platform ve servislerin Docker ile container haline getirilip Debian sunucuda Portainer üzerinden devreye alınması.

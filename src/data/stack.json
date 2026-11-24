@@ -3,6 +3,7 @@
   "cpp": { "name": "C++", "group": "languages" },
   "python": { "name": "Python", "group": "languages" },
   "typescript": { "name": "TypeScript", "group": "languages" },
+  "javascript": { "name": "JavaScript", "group": "languages" },
   "dotnet": { "name": ".NET", "group": "backend" },
   "aspnetcore": { "name": "ASP.NET Core", "group": "backend" },
   "efcore": { "name": "Entity Framework", "group": "backend" },
@@ -19,6 +20,7 @@
   "scada-hmi": { "name": "SCADA / HMI", "group": "ot" },
   "st": { "name": "Structured Text", "group": "ot" },
   "ladder": { "name": "Ladder Logic", "group": "ot" },
+  "fb-db": { "name": "Function Blocks / Data Blocks", "group": "ot" },
   "modbus": { "name": "Modbus RTU/TCP", "group": "protocols" },
   "opcua": { "name": "OPC UA", "group": "protocols" },
   "canbus": { "name": "CANbus", "group": "protocols" },
@@ -28,5 +30,8 @@
   "portainer": { "name": "Portainer", "group": "devops" },
   "linux": { "name": "Linux (Debian)", "group": "devops" },
   "git": { "name": "Git", "group": "devops" },
+  "svn": { "name": "SVN", "group": "devops" },
+  "jira": { "name": "Jira", "group": "devops" },
+  "redmine": { "name": "Redmine", "group": "devops" },
   "nopcommerce": { "name": "nopCommerce", "group": "backend" }
 }

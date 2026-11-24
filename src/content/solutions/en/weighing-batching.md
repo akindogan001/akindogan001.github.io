@@ -3,7 +3,7 @@ title: Weighing, Dosing and Batching Automation
 summary: Automation software for PLC-controlled weighing and dosing lines that manages recipes, batches and dispatch, with communication to multiple scales unified in one library.
 category: automation
 layers: [field, acquisition, integration, decision]
-stack: [csharp, dotnet, winforms, windows-services, mssql, siemens-s7, omron-nx, st, ladder, modbus, opcua, serial]
+stack: [csharp, dotnet, winforms, windows-services, mssql, siemens-s7, omron-nx, st, ladder, fb-db, modbus, opcua, serial]
 metrics:
   - { value: "Multiple scales", label: "one communication library" }
   - { value: "State machine", label: "PLC control flows" }
@@ -34,7 +34,9 @@ Production lines built on weighing and dosing needed recipes applied correctly, 
 ## Approach
 
 - C# + SQL Server desktop applications and Windows services for machine control and process automation.
+- Automation and integration of weighing/dosing, batching and dispatch/shipping workflows.
 - A shared communication library for multiple weighing devices over RS232/RS485.
 - Communication with Siemens S7 and Omron NX PLCs over Modbus, OPC UA and serial protocols.
-- Production order, stock and recipe synchronization with the ERP.
+- Production order, inventory, recipe and lot tracking synchronization with the ERP.
+- Operator-focused HMI panels with alarms, interlocks and workflow guidance.
 - On-site commissioning and debugging of PLC-controlled machines.

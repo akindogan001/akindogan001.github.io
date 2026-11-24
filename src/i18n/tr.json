@@ -82,12 +82,12 @@
     "backend": "Backend",
     "data": "Veri",
     "frontend": "Frontend",
-    "devops": "DevOps"
+    "devops": "DevOps / Araçlar"
   },
   "home": {
     "eyebrow": "Endüstriyel yazılım mühendisi",
     "title": "Sahadan karara: üretim verinizin yolculuğunu uçtan uca tasarlıyorum.",
-    "lead": "Makinelerden veriyi toplayan, sistemler arasında kayıpsız taşıyan ve karara dönüştüren yazılımlar geliştiriyorum. PLC/SCADA entegrasyonu, MES modülleri, gerçek zamanlı telemetri ve veri senkronizasyonu üzerine 8 yıllık deneyim.",
+    "lead": "Makinelerden veriyi toplayan, sistemler arasında kayıpsız taşıyan ve karara dönüştüren yazılımlar geliştiriyorum. PLC/SCADA entegrasyonu, MES modülleri, gerçek zamanlı telemetri ve veri senkronizasyonu üzerine 7 yılı aşkın deneyim.",
     "ctaPrimary": "Çözümleri incele",
     "ctaSecondary": "Projenizi konuşalım",
     "status": "Yeni projelere açığım",
@@ -101,6 +101,17 @@
       "ERP'deki üretim emirleri sahada olanla uyuşmuyor.",
       "İki veritabanı birbirini tutmuyor, gece job'ları sürekli patlıyor.",
       "Kimsenin dokunmaya cesaret edemediği eski bir masaüstü uygulaması ya da Windows servisi."
+    ],
+    "expertiseTitle": "Uzmanlık alanları",
+    "expertise": [
+      { "title": "Endüstriyel otomasyon", "items": ["Makine kontrolü", "Tartım / dozajlama", "Batching", "Sevkiyat otomasyonu", "Operatör panelleri"] },
+      { "title": "Üretim yönetimi (MES)", "items": ["OEE hesaplama", "Duruş takibi", "Batch / lot izlenebilirliği", "Shopfloor veri toplama"] },
+      { "title": "Endüstriyel veri sistemleri", "items": ["Gerçek zamanlı telemetri hatları", "Cihaz izleme", "Eş zamanlı cihaz haberleşmesi"] },
+      { "title": "Kurumsal entegrasyon", "items": ["ERP entegrasyonu", "B2B entegrasyonu", "REST tabanlı entegrasyon"] },
+      { "title": "Veri senkronizasyonu", "items": ["Çoklu veritabanı senkronizasyonu", "Artımlı replikasyon", "Trigger tabanlı değişiklik takibi"] },
+      { "title": "Robotik ve simülasyon", "items": ["Filo trafik yönetimi", "Dijital ikiz", "Saha simülasyonu"] },
+      { "title": "Mimari ve mühendislik", "items": ["Modüler monolit", "Multithreading", "Arka plan servisleri", "Performans optimizasyonu"] },
+      { "title": "Teknik liderlik", "items": ["Sprint planlama", "Kod incelemeleri", "Görev planlama", "Mentorluk"] }
     ],
     "featuredTitle": "Öne çıkan sistemler",
     "approachTitle": "Nasıl düşünüyorum",

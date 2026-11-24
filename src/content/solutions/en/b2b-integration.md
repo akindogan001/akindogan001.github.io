@@ -23,5 +23,5 @@ Dealers and corporate customers needed to order with their own prices and produc
 ## Approach
 
 - Company-specific pricing and customer-specific catalog customizations on a nopCommerce-based B2B platform.
-- Integration with ERP and back-office systems over REST APIs.
+- Integration with ERP and back-office systems through secure REST APIs and scheduled synchronization services.
 - Containerizing the platform and services with Docker and deploying them on a Debian server through Portainer.

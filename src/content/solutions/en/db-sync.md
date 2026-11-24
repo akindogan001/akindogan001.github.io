@@ -37,7 +37,7 @@ Several systems kept the same business data (prices, stock, customers, orders) i
 
 ## Approach
 
-- **Full snapshot** for initial load and resynchronization, **incremental** replication for day-to-day operation.
+- **Full snapshot** for initial load and resynchronization, **incremental** replication for day-to-day operation. Strategies are configurable: periodic full or log-based incremental.
 - Changes land in an audit log at the source; the service reads the log at short intervals and applies it to the target.
 - Every apply runs in a transaction; on failure it is rolled back and the record goes to the error queue.
 - Services run as Docker containers on a Linux server.

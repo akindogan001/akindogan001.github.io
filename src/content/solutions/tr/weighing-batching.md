@@ -3,7 +3,7 @@ title: Tartım, Dozajlama ve Batching Otomasyonu
 summary: PLC kontrollü tartım ve dozajlama hatlarında reçete, batch ve sevkiyat süreçlerini yöneten; çoklu terazi iletişimini tek kütüphanede toplayan otomasyon yazılımları.
 category: automation
 layers: [field, acquisition, integration, decision]
-stack: [csharp, dotnet, winforms, windows-services, mssql, siemens-s7, omron-nx, st, ladder, modbus, opcua, serial]
+stack: [csharp, dotnet, winforms, windows-services, mssql, siemens-s7, omron-nx, st, ladder, fb-db, modbus, opcua, serial]
 metrics:
   - { value: "Çoklu terazi", label: "tek iletişim kütüphanesi" }
   - { value: "State machine", label: "PLC kontrol akışları" }
@@ -34,7 +34,9 @@ Tartım ve dozajlamaya dayalı üretim hatlarında reçetelerin doğru uygulanma
 ## Yaklaşım
 
 - Makine kontrolü ve proses otomasyonu için C# + SQL Server tabanlı masaüstü uygulamaları ve Windows servisleri.
+- Tartım/dozajlama, batching ve sevkiyat süreçlerinin otomasyonu ve entegrasyonu.
 - RS232/RS485 üzerinden birden çok tartım cihazıyla haberleşen ortak bir iletişim kütüphanesi.
 - Siemens S7 ve Omron NX PLC'lerle Modbus, OPC UA ve seri protokoller üzerinden haberleşme.
-- ERP ile üretim emri, stok ve reçete senkronizasyonu.
+- ERP ile üretim emri, stok, reçete ve lot takibi senkronizasyonu.
+- Alarm, interlock ve iş akışı yönlendirmesi içeren, operatör odaklı HMI panelleri.
 - PLC kontrollü makinelerde sahada devreye alma ve hata ayıklama.

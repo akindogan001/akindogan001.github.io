@@ -56,6 +56,22 @@ const jsonLd = {
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <h2 class="dim-title">{d.home.expertiseTitle}</h2>
+      <ul class="expertise">
+        {
+          d.home.expertise.map((e) => (
+            <li>
+              <h3>{e.title}</h3>
+              <p>{e.items.join(' · ')}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
   {
     featured.length > 0 && (
       <section class="section">
@@ -156,6 +172,11 @@ const jsonLd = {
     background: var(--signal);
     border-radius: 2px;
   }
+
+  .expertise { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .expertise li { padding: 16px; background: var(--surface); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: var(--radius); }
+  .expertise h3 { font-size: 1rem; margin: 0 0 6px; }
+  .expertise p { margin: 0; font: 0.8rem/1.6 var(--font-mono); color: var(--muted); }
 
   .questions { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
   .questions a { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 4px 24px; padding: 14px 18px; background: var(--surface); color: var(--text); text-decoration: none; }
