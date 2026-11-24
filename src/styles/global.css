@@ -81,7 +81,7 @@ code, .mono { font-family: var(--font-mono); }
 
 /* ---------- Yerleşim ---------- */
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
-.section { padding: clamp(40px, 7vw, 80px) 0; }
+.section { padding-block: clamp(40px, 7vw, 80px); } /* yalnızca dikey: container ile aynı elemanda yatay boşluğu ezmez */
 .section + .section { border-top: 1px dashed var(--line); }
 .lead { font-size: 1.15rem; color: var(--muted); max-width: 68ch; }
 .eyebrow {
