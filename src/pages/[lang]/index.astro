@@ -33,10 +33,6 @@ const jsonLd = {
       <span class="eyebrow">{d.home.eyebrow}</span>
       <h1>{d.home.title}</h1>
       <p class="lead">{d.home.lead}</p>
-      <div class="hero__status">
-        <span class="status">{d.home.status}</span>
-        <span class="mono hero__loc">{d.home.location}</span>
-      </div>
       <div class="btn-row">
         <a class="btn" href={url(lang, 'solutions')}>{d.home.ctaPrimary}</a>
         <a class="btn btn--ghost" href={url(lang, 'contact')}>{d.home.ctaSecondary}</a>
@@ -146,8 +142,6 @@ const jsonLd = {
 
 <style>
   .hero h1 { max-width: 22ch; }
-  .hero__status { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
-  .hero__loc { font-size: 0.85rem; color: var(--muted); }
   .hero__diagram { margin-top: clamp(40px, 6vw, 64px); }
 
   .problems { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
